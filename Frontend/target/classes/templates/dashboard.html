@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f4f7f6; }
+        .container { max-width: 850px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 0 auto; }
+        h2 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        
+        /* 4. Dashboard Metrics Structure */
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .metric-card { background: #e9ecef; padding: 15px; border-radius: 6px; text-align: center; border-left: 5px solid #0056b3; }
+        .metric-card h4 { margin: 0; color: #555; font-size: 13px; text-transform: uppercase; }
+        .metric-card p { margin: 10px 0 0 0; font-size: 18px; font-weight: bold; color: #333; }
+        
+        .menu-section { margin-top: 30px; background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 6px; }
+        .menu-item { background: #f8f9fa; padding: 12px; margin: 8px 0; border-radius: 5px; text-align: center; font-weight: bold; border: 1px solid #eee; }
+        a { text-decoration: none; color: #0056b3; display: block; }
+        a:hover { color: #003d82; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🎯 Student Dashboard</h2>
+    <p>Student Skill Gap Analyzer - உங்களது முகப்புப் பலகை</p>
+    
+    <!-- கையேட்டில் உள்ள 7 முக்கிய புள்ளிவிவரங்கள் (Metrics) -->
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <h4>Current Target Role</h4>
+            <p th:text="${targetRole}">Java Backend Developer</p>
+        </div>
+        <div class="metric-card">
+            <h4>Latest Match Score</h4>
+            <p style="color: #28a745;" th:text="${latestScore}">46.15%</p>
+        </div>
+        <div class="metric-card">
+            <h4>Matched Skills</h4>
+            <p th:text="${matchedCount}">3</p>
+        </div>
+        <div class="metric-card">
+            <h4>Missing Skills</h4>
+            <p style="color: #dc3545;" th:text="${missingCount}">3</p>
+        </div>
+        <div class="metric-card">
+            <h4>Highest Previous Score</h4>
+            <p th:text="${highestScore}">85.00%</p>
+        </div>
+        <div class="metric-card">
+            <h4>Number of Assessments</h4>
+            <p th:text="${assessmentCount}">4</p>
+        </div>
+        <div class="metric-card" style="grid-column: span 2;">
+            <h4>Top Recommended Skills</h4>
+            <p style="font-size: 15px; color: #0056b3;" th:text="${topRecommendations}">Spring Boot, REST API, Hibernate</p>
+        </div>
+    </div>
+
+    <!-- உங்களுடைய ப்ராஜெக்ட் ஒர்க்ஃப்ளோ மெனு -->
+    <div class="menu-section">
+        <h3>💡 Quick Actions</h3>
+        <div class="menu-item">
+            <a href="/skills">🛠️ Maintain Skills (திறமைகளை நிர்வகி)</a>
+        </div>
+        <div class="menu-item">
+            <a href="/assessment/role">🎯 Run Assessment (மதிப்பீட்டைத் தொடங்கு)</a>
+        </div>
+        <div class="menu-item">
+            <a href="/history">🕒 Review History (தேர்வு வரலாறு காண்)</a>
+        </div>
+        <div class="menu-item" style="background: #fde8e8;">
+            <a href="/login" style="color: #dc3545;">🚪 Logout (வெளியேறு)</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

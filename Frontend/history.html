@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Assessment History</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 30px; background-color: #f8fafc; color: #333; }
+        .container { max-width: 850px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 0 auto; }
+        h2 { color: #0f172a; border-bottom: 2px solid #0f172a; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+        th { background-color: #0f172a; color: white; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        .btn-back { display: inline-block; margin-top: 20px; text-decoration: none; color: #64748b; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🕒 5. Assessment History</h2>
+    <p>நீங்கள் இதுவரை எழுதிய திறன் மதிப்பீட்டுத் தேர்வுகளின் முழு விபரம்:</p>
+
+    <!-- கையேட்டின் விதிமுறைப்படியான அட்டவணை -->
+    <table>
+        <thead>
+            <tr>
+                <th>Target Role</th>
+                <th>Match Score</th>
+                <th>Status Label</th>
+                <th>Assessment Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${history}">
+                <td th:text="${item.targetRole}">Java Developer</td>
+                <td th:text="${item.score}">46.15%</td>
+                <td th:text="${item.label}">Developing</td>
+                <td th:text="${#temporals.format(item.createdAt, 'yyyy-MM-dd HH:mm')}">2026-10-12</td>
+            </tr>
+            <!-- Empty state handling rule met -->
+            <tr th:if="${#lists.isEmpty(history)}">
+                <td colspan="4" style="text-align: center; color: #64748b; padding: 20px;">
+                    தேர்வு வரலாறு எதுவும் இதுவரை கிடைக்கவில்லை!
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/dashboard" class="btn-back">← Back to Dashboard</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ta" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Student Account</title>
+    <!-- பக்கத்தை அழகாகக் காட்ட Bootstrap CSS -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f1f3f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .register-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 450px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-card">
+        <!-- தலைப்பு (Page Title) -->
+        <h2 class="text-center fw-bold text-primary mb-2">Create Account</h2>
+        <p class="text-center text-muted small mb-4">மாணவர் கணக்கை உருவாக்க உங்கள் விவரங்களை உள்ளிடவும்</p>
+
+        <!-- UI Form: சப்மிட் பண்ணா லாகின் UI பக்கத்துக்கு போகும் -->
+        <form th:action="@{/register}" method="post">
+            
+            <!-- 1. Name Input -->
+            <div class="mb-3">
+                <label for="username" class="form-label fw-semibold">Full Name (முழு பெயர்)</label>
+                <input type="text" class="form-filter form-control" name="username"id="username" placeholder="உங்கள் பெயரை டைப் செய்யவும்" required>
+            </div>
+
+            <!-- 2. Email Input -->
+            <div class="mb-3">
+                <label for="email" class="form-label fw-semibold">Email Address (மின்னஞ்சல்)</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+            </div>
+
+            <!-- 3. Password Input -->
+            <div class="mb-3">
+                <label for="password" class="form-label fw-semibold">Password (கடவுச்சொல்)</label>
+                <input type="password" class="form-control" id="password"  name="password"placeholder="ரகசிய குறியீட்டை டைப் செய்யவும்" required>
+            </div>
+
+            <!-- 4. Register Button -->
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary btn-lg fw-bold">Sign Up (பதிவு செய்)</button>
+            </div>
+        </form>
+
+        <!-- லாகின் பக்கத்திற்குப் போகும் லிங்க் -->
+        <div class="text-center mt-4">
+            <p class="text-muted small mb-0">ஏற்கனவே கணக்கு உள்ளதா? <a href="/login" class="text-primary fw-bold text-decoration-none">Login Here</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

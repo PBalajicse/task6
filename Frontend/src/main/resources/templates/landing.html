@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ta" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Skill Gap Analyzer - UI</title>
+    <!-- பக்கத்தை அழகாகக் காட்ட Bootstrap CSS லிங்க் -->
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #0056b3 0%, #002d62 100%);
+            color: white;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. UI: Project Introduction (ப்ராஜெக்ட் அறிமுகம்) -->
+    <div class="hero-section text-center shadow">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Student Skill Gap Analyzer</h1>
+            <p class="lead mb-4">உங்கள் திறமைகளைச் சோதித்து, வேலைக்குத் தேவையான தகுதிகளை வளர்த்துக் கொள்ள உதவும் ஒரு UI தளம்.</p>
+            
+            <!-- 2. UI: Call to Action (மற்ற பக்கங்களுக்கான பட்டன்கள்) -->
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <!-- இந்த லிங்க்குகள் அடுத்து நாம செய்யப்போற UI பக்கங்களைக் கூப்பிடும் -->
+                <a href="/register" class="btn btn-warning btn-lg px-5 fw-bold shadow-sm">Register Page</a>
+                <a href="/login" class="btn btn-outline-light btn-lg px-5 shadow-sm">Login Page</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI-இல் உள்ள மற்ற பக்கங்களின் பட்டியல் (டேபிள் படி) -->
+    <div class="container my-5">
+        <h3 class="text-center mb-4 fw-bold text-secondary">Required UI Pages Tracker</h3>
+        <div class="row g-3 justify-content-center">
+            <div class="col-md-8">
+                <ul class="list-group shadow-sm">
+                    <li class="list-group-item d-flex justify-content-between align-items-center bg-primary text-white">
+                        <span><strong>1. Landing Page</strong> (இப்போ நீங்க பாக்குற இந்த பக்கம்)</span>
+                        <span class="badge bg-success rounded-pill">Done</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><strong>2. Register Page</strong> (Create student account)</span>
+                        <a href="/register" class="btn btn-sm btn-outline-primary">View UI</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><strong>3. Login Page</strong> (Authenticate)</span>
+                        <a href="/login" class="btn btn-sm btn-outline-primary">View UI</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><strong>4. Dashboard Page</strong> (Overview and latest assessment)</span>
+                        <a href="/dashboard" class="btn btn-sm btn-outline-primary">View UI</a>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><strong>5. My Skills Page</strong> (Add/remove skills and levels)</span>
+                        <a href="/my-skills" class="btn btn-sm btn-outline-primary">View UI</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center py-4 text-muted bg-white border-top mt-5">
+        <p class="mb-0">&copy; 2026 Student Skill Gap Analyzer Portal.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Manage Skills</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; margin: 30px; background-color: #f8fafc; color: #333; }
+        .container { max-width: 850px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin: 0 auto; }
+        h2 { color: #1e293b; border-bottom: 2px solid #1e293b; padding-bottom: 10px; }
+        form { margin-bottom: 30px; background: #f1f5f9; padding: 20px; border-radius: 6px; border: 1px solid #e2e8f0; }
+        input, textarea { width: 96%; padding: 10px; margin: 8px 0 18px 0; border: 1px solid #cbd5e1; border-radius: 4px; }
+        button { background: #1e293b; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #334155; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; }
+        th { background-color: #1e293b; color: white; }
+        .status-active { background: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+        .status-inactive { background: #fee2e2; color: #b91c1c; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+        .btn-deactivate { color: #b91c1c; text-decoration: none; font-weight: bold; }
+        .btn-back { display: inline-block; margin-top: 20px; text-decoration: none; color: #64748b; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📝 Admin Features: Manage Catalogue Skills</h2>
+    <p>புதிய திறமைகளை உருவாக்குவதற்கும் மற்றும் செயலிழக்கச் செய்வதற்குமான நிர்வாகப் பக்கம்.</p>
+
+    <!-- புதிய ஸ்கில் உருவாக்கும் ஃபார்ம் -->
+    <form action="/admin/skills/add" method="POST">
+        <label><b>Skill Name (திறமை பெயர்):</b></label>
+        <input type="text" name="skillName" placeholder="எ.கா: Spring Boot, Microservices" required />
+
+        <label><b>Description (விவரம்):</b></label>
+        <textarea name="description" rows="3" placeholder="இந்தத் திறமையைப் பற்றிய சிறு குறிப்பு..." required></textarea>
+
+        <button type="submit">+ Create Skill</button>
+    </form>
+
+    <!-- திறமைகளின் பட்டியல் அட்டவணை -->
+    <h3>Catalogue Items</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Skill Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="skill : ${skills}">
+                <td th:text="${skill.id}">1</td>
+                <td th:text="${skill.skillName}">Java</td>
+                <td th:text="${skill.description}">Backend Development</td>
+                <td>
+                    <span th:class="${skill.status == 'ACTIVE'} ? 'status-active' : 'status-inactive'"
+                          th:text="${skill.status}">ACTIVE</span>
+                </td>
+                <td>
+                    <!-- Soft Deactivation Link -->
+                    <a th:if="${skill.status == 'ACTIVE'}" 
+                       th:href="@{/admin/skills/deactivate/{id}(id=${skill.id})}" 
+                       class="btn-deactivate" 
+                       onclick="return confirm('இந்தத் திறமையைச் செயலிழக்க (Deactivate) செய்ய வேண்டுமா?')">Deactivate</a>
+                    <span th:if="${skill.status == 'INACTIVE'}" style="color: #94a3b8;">Disabled</span>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(skills)}">
+                <td colspan="5" style="text-align: center; color: #64748b;">திறமைகள் எதுவும் கிடைக்கவில்லை!</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="/admin/dashboard" class="btn-back">← Back to Configuration Console</a>
+</div>
+
+</body>
+</html>
